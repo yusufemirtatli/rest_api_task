@@ -417,7 +417,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://127.0.0.1:8000/api/tickets/4/download"
+						"url": "http://127.0.0.1:8000/api/tickets/1/download"
 					},
 					"response": []
 				},
