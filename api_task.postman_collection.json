@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "f3a6eaef-ad60-4c40-9e37-3155311f5bb4",
+		"name": "api_task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41335225"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Yusuf Emir\",\r\n    \"email\": \"yusuf@example.com\",\r\n    \"role_id\": 1, // 1 ADMİN , 2 MEMBER OLARAK AYARLANDI EĞER 2 YAPARSANIZ EVENT OLUŞTURMAYA YETKİSİ OLMAZ\r\n    \"password\": \"password\",\r\n    \"password_confirmation\": \"password\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"yusuf@example.com\",\r\n    \"password\": \"password\"\r\n}\r\n\r\n// BURADA ALDIĞINIZ TOKENİ DİĞER KLASÖRLERİN İÇİNDE AUTHHORIZATION KISMINDAKİ BEARER TOKEN KISIMINA YAPIŞTIRMANIZ GEREK BÜTÜN KLASÖRLERDE BUNU YAPMALISINIZ AKSİ HALDE HATA ALABİLİRSİNİZ\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh User Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Mzc3MjQzMTcsImV4cCI6MTczNzcyNzkxNywibmJmIjoxNzM3NzI0MzE3LCJqdGkiOiIzUG9iSEpicVAxYXp3b0pWIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.9N5sEZOQBodcdx3JQv1Ab8jnqu0fKxh-mCBZKslO_T4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/auth/refresh"
+					},
+					"response": []
+				},
+				{
+					"name": "User Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Mzc3MjQzMTcsImV4cCI6MTczNzcyNzkxNywibmJmIjoxNzM3NzI0MzE3LCJqdGkiOiIzUG9iSEpicVAxYXp3b0pWIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.9N5sEZOQBodcdx3JQv1Ab8jnqu0fKxh-mCBZKslO_T4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/auth/logout"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Mzc3MjUxOTIsImV4cCI6MTczNzcyODc5MiwibmJmIjoxNzM3NzI1MTkyLCJqdGkiOiJYRDlaVUhMYlpJcG1ld2pjIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.fSUfLmFfagG7SauPxNEGdd8ZqTNRhEmulod3McLnvac"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Get Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/events"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event Info 1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Yazılım Geliştirici Konferansı\",\r\n    \"description\": \"Geliştiriciler için düzenlenen bir günlük etkinlik.\",\r\n    \"venue_id\": 1,\r\n    \"start_date\": \"2025-02-15\",\r\n    \"end_date\": \"2025-02-16\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/events"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event 1",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated Event Name\",\r\n    \"description\": \"Updated description of the event\",\r\n    \"venue_id\": 1,\r\n    \"start_date\": \"2025-02-10\",\r\n    \"end_date\": \"2025-02-12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/events/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event 1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/events/1"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Mzc4MTY5MTQsImV4cCI6MTczNzgyMDUxNCwibmJmIjoxNzM3ODE2OTE0LCJqdGkiOiJ4cEV4QTJRMlhvbUhORm84Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.zj7pSjuTkg26Izl_yAh6xrXJpJQ5pf3eJGshV7zy93Y"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Seats",
+			"item": [
+				{
+					"name": "List Venue 1 Seats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/venues/1/seats"
+					},
+					"response": []
+				},
+				{
+					"name": "List Event 1 Seats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/events/1/seats"
+					},
+					"response": []
+				},
+				{
+					"name": "Block",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,  // Etkinlik ID'si\r\n    \"seat_id\": 5     // Koltuk ID'si\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/seats/block"
+					},
+					"response": []
+				},
+				{
+					"name": "Relase",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"event_id\": 1,  // Etkinlik ID'si\r\n    \"seat_id\": 5     // Koltuk ID'si\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/seats/release"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Mzc4MTEzMjMsImV4cCI6MTczNzgxNDkyMywibmJmIjoxNzM3ODExMzIzLCJqdGkiOiJmUjV6akdtMWVHSnBDSjh2Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.TD5MNLeNUZYtPMscgBFjTz-Tfym4YSnU3l7y1UBwZ0g"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Reservations",
+			"item": [
+				{
+					"name": "List Reservations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/reservations"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reservations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"event_id\": 1,\r\n  \"seat_ids\": [2,3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/reservations"
+					},
+					"response": []
+				},
+				{
+					"name": "Show reservation 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/reservations/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Reservation 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "http://127.0.0.1:8000/api/reservations/1/confirm"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Reservation 1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/reservations/1"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3Mzc4MTY5MTQsImV4cCI6MTczNzgyMDUxNCwibmJmIjoxNzM3ODE2OTE0LCJqdGkiOiJ4cEV4QTJRMlhvbUhORm84Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.zj7pSjuTkg26Izl_yAh6xrXJpJQ5pf3eJGshV7zy93Y"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "List Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/tickets"
+					},
+					"response": []
+				},
+				{
+					"name": "Show Ticket 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/tickets/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Ticket 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8000/api/tickets/4/download"
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer Ticket 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 2  // Transfer yapılacak kullanıcı ID'si\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8000/api/tickets/1/transfer"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
